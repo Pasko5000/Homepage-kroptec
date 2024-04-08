@@ -1,36 +1,49 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kroptec</title>
+    <title>Paweł Skornia</title>
+
     <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header id="home" class="centered-content section">
-        <span id="decoded-text"></span><span id="encoding-text">XXXXXXXXXXXXX</span>
-    </header>
-
-    <section id="about" class="section hidden">
-        <h2>O mnie</h2>
-        <p>Lorem ipsum dolor sit amet...</p>
-    </section>
-
-    <section id="experience" class="section hidden">
-        <h2>Doświadczenie</h2>
-        <p>Obszerny zakres doświadczeń w cyberbezpieczeństwie, w tym zarządzanie infrastrukturą bezpieczeństwa i analiza zagrożeń...</p>
-    </section>
-
-    <section id="skills" class="section hidden">
-        <h2>Skille</h2>
-        <p>Cloud Security, SIEM, Cybersecurity, Programming (Python, JavaScript)...</p>
-    </section>
-
-    <section id="projects" class="section hidden">
-        <h2>Projekty</h2>
-        <p>Lorem ipsum dolor sit amet...</p>
-    </section>
 
     <script src="script.js"></script>
+
+</head>
+
+<body>
+
+    <main class="container">
+        <header>
+            <h1>Paweł Skornia</h1>
+        </header>
+
+        <section class="content">
+            <p>Rozpoczynając moją karierę zawodową w branży e-commerce, szybko zdobyłem cenne doświadczenie, które stało
+                się fundamentem mojej szerokiej wiedzy technicznej w sektorze IT. To właśnie tam odkryłem swoją pasję do
+                cyberbezpieczeństwa, która z czasem przekształciła się w główny obszar mojej specjalizacji. Dzięki temu
+                mogę dziś skutecznie zarządzać infrastrukturą niezbędną do uruchamiania aplikacji oraz chronić systemy
+                przed potencjalnymi zagrożeniami. Moje zaangażowanie w różnorodne projekty IT pozwala mi na nieustanne
+                eksplorowanie nowatorskich rozwiązań i rozwijanie wiedzy. Znajomość programowania i rozległa znajomość
+                narzędzi umożliwiają mi efektywne implementowanie strategii, które zabezpieczają dane i infrastrukturę,
+                przyczyniając się tym samym do podnoszenia standardów bezpieczeństwa cyfrowego w każdej organizacji.</p>
+        </section>
+
+        <section id="ask-me">
+            <div id="chatConsole">
+                <p class="chatMessage">[System]: Tutaj możesz zadać pytanie. Odpowiem jak najszybciej!</p>
+                <!-- Tutaj mogą pojawiać się kolejne wiadomości -->
+            </div>
+            <form id="askForm">
+                <input type="text" id="askAnything" placeholder="Zadaj pytanie...">
+                <button type="submit" id="sendButton">Wyślij</button>
+            </form>
+        </section>
+
+
+    </main>
+
 </body>
+
 </html>

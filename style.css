@@ -1,36 +1,92 @@
-/* style.css */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    background: #020204;
-    color: #22b455;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Courier New', Courier, monospace;
-    overflow: hidden;
+/* Definiowanie zmiennych */
+:root {
+  --main-font-color: #22b455;
+  --background-color: #020204;
+  --font-family: 'Fira Code', monospace;
+  --text-shadow: 0 0 3px #22b455, 0 0 5px #22b455;
 }
 
-.centered-content {
-    text-align: center;
-    font-size: 4em; /* Duży rozmiar czcionki dla efektu */
-    white-space: nowrap; /* Zapobiega zawijaniu tekstu */
+body {
+  font-family: var(--font-family);
+  color: var(--main-font-color);
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: justify;
+  hyphens: auto;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  text-shadow: var(--text-shadow);
+
 }
 
-.section {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    padding: 50px 20px;
-    box-sizing: border-box;
-    transition: opacity 1s ease-in-out;
+/* Styl dla contentu */
+.container {
+  max-width: 600px;
+  width: clamp(100%, 600px, 100%);
+  margin: 0 auto;
 }
 
-.hidden {
-    display: none; /* Ukrywa sekcje do momentu, gdy zostaną aktywowane */
+/* Style dla nagłówków */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--main-font-color); 
+}
+
+
+/* Styl dla sekcji z chatem */
+#ask-me {
+  background-color:  var(-background-color); /* Tło - ciemne, spójne z resztą projektu */
+  color: var(--main-font-color);; /* Tekst - zielony, również spójny z resztą */
+  font-family: 'Fira Code', monospace; /* Utrzymanie spójności czcionek */
+  padding: 20px;
+  border: 1px solid var(--main-font-color); /* Dodaje konsolowy vibe */
+  margin-top: 20px;
+}
+
+#chatConsole {
+  background-color:  var(-background-color); /* Tło dla konsoli */
+  color: var(--main-font-color); /* Kolor tekstu dla konsoli */
+  padding: 10px;
+  min-height: 150px; /* Minimalna wysokość konsoli */
+  overflow-y: auto; /* Pozwala na przewijanie jeśli zawartość przekroczy wysokość */
+  border: 1px solid var(--main-font-color); /* Lekka obramówka do podkreślenia konsoli */
+}
+
+.chatMessage {
+  margin: 0 0 10px 0; /* Odstępy między wiadomościami */
+}
+
+#askForm {
+  display: flex; /* Umożliwia wygodne rozmieszczenie elementów formularza */
+  gap: 10px; /* Odstęp między polami */
+  margin-top: 10px; /* Odstęp od konsoli */
+}
+
+#askAnything {
+  flex-grow: 1; /* Pole tekstowe zajmuje dostępną przestrzeń */
+  font-size: 1rem; 
+  color: var(--main-font-color);
+  background-color:  var(--background-color);
+  border: 1px solid var(--main-font-color);
+}
+
+#sendButton {
+  background-color: var(--main-font-color); /* Zielony przycisk */
+  color:  var(--background-color); /* Tekst na przycisku */
+  font-size: 1rem; 
+  border: none;
+  cursor: pointer;
+}
+
+#askAnything::placeholder { /* Styl dla placeholdera */
+  color: var(--main-font-color);
+  background-color: var(--background-color); 
+}
+
+#sendButton:hover {
+  background-color: var(--main-font-color); /* Lekkie rozjaśnienie przycisku przy najechaniu */
 }
