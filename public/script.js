@@ -67,21 +67,45 @@ document.addEventListener("DOMContentLoaded", function() {
   const chatConsole = document.getElementById('chatConsole');
 
   // Funkcja do dodawania wiadomości do konsoli czatu
-  function postMessage(message) {
+  function postMessage(message, sender = "Użytkownik") {
     const messageElement = document.createElement('p');
     messageElement.classList.add('chatMessage');
-    messageElement.textContent = `[Użytkownik]: ${message}`;
+    messageElement.textContent = `[${sender}]: ${message}`;
     chatConsole.appendChild(messageElement);
     
     // Przewijanie konsoli do najnowszej wiadomości
     chatConsole.scrollTop = chatConsole.scrollHeight;
   }
 
+  // Funkcja do wysyłania zapytania do serwera i odbierania odpowiedzi
+  function askQuestion(question) {
+    fetch(`http://127.0.0.1:8080/ask?prompt=${encodeURIComponent(question)}`, {
+      method: 'POST'
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP status ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const reply = data['answer'] ? data['answer'] : "Nie mogę odpowiedzieć na to pytanie.";
+      postMessage(reply, "System");
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      postMessage("Wystąpił błąd podczas próby uzyskania odpowiedzi.", "System");
+    });
+  }
+  
+
   // Obsługa wysyłania formularza
   chatForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    if (chatInput.value.trim() !== '') {
-      postMessage(chatInput.value.trim());
+    const userMessage = chatInput.value.trim();
+    if (userMessage !== '') {
+      postMessage(userMessage);
+      askQuestion(userMessage);
       chatInput.value = ''; // Czyszczenie pola tekstowego
     }
   });
@@ -90,8 +114,10 @@ document.addEventListener("DOMContentLoaded", function() {
   chatInput.addEventListener('keypress', function(event) {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
-      if (chatInput.value.trim() !== '') {
-        postMessage(chatInput.value.trim());
+      const userMessage = chatInput.value.trim();
+      if (userMessage !== '') {
+        postMessage(userMessage);
+        askQuestion(userMessage);
         chatInput.value = ''; // Czyszczenie pola tekstowego
       }
     }
