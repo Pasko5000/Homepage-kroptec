@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Funkcja do wysyłania zapytania do serwera i odbierania odpowiedzi
   function askQuestion(question) {
-    fetch(`http://127.0.0.1:8080/ask?prompt=${encodeURIComponent(question)}`, {
+    fetch(`https://llm.kroptec.pl/ask?prompt=${encodeURIComponent(question)}`, {
       method: 'POST'
     })
     .then(response => {
