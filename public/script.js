@@ -79,25 +79,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Funkcja do wysyłania zapytania do serwera i odbierania odpowiedzi
   function askQuestion(question) {
-    fetch(`https://llm.kroptec.pl/ask?prompt=${encodeURIComponent(question)}`, {
-      method: 'POST'
+    fetch('https://llm.kroptec.pl/ask', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prompt: question })
     })
     .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP status ${response.status}`);
-      }
-      return response.json();
+        if (!response.ok) {
+            throw new Error(`HTTP status ${response.status}`);
+        }
+        return response.json();
     })
     .then(data => {
-      const reply = data['answer'] ? data['answer'] : "Nie mogę odpowiedzieć na to pytanie.";
-      postMessage(reply, "System");
+        const reply = data['answer'] ? data['answer'] : "Nie mogę odpowiedzieć na to pytanie.";
+        postMessage(reply, "System");
     })
     .catch(error => {
-      console.error('Error:', error);
-      postMessage("Wystąpił błąd podczas próby uzyskania odpowiedzi.", "System");
+        console.error('Error:', error);
+        postMessage("Wystąpił błąd podczas próby uzyskania odpowiedzi.", "System");
     });
-  }
-  
+}
+
 
   // Obsługa wysyłania formularza
   chatForm.addEventListener('submit', function(event) {
