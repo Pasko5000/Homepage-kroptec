@@ -13,7 +13,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Create a question-answering pipeline
-qa_pipeline = pipeline(question=question, context=context, max_answer_length=255, top_k=5)
+qa_pipeline = pipeline("question-answering", model=model, tokenizer=tokenizer, top_k=3, max_answer_length=150)
 
 def load_context_from_file(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
