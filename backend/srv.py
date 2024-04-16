@@ -19,18 +19,20 @@ def load_context_from_file(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
         return file.read()
 
-@app.route('/ask', methods=['POST'])
 def answer_question():
-    question = request.args.get('prompt', '')
+    # Pobieranie danych z ciała żądania JSON
+    data = request.get_json()
+    question = data.get('prompt', '')
+    
     if not question:
         return jsonify({'error': 'Please provide a question.'}), 400
 
-    # Load context from the context.txt file
+    # Załadowanie kontekstu z pliku
     context = load_context_from_file('context.txt')
 
-    # Use the model to generate an answer
+    # Użycie modelu do generowania odpowiedzi
     answer = qa_pipeline(question=question, context=context)
     return jsonify(answer)
 
 if __name__ == '__main__':
-    app.run(port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
