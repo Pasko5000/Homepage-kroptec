@@ -19,6 +19,7 @@ def load_context_from_file(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
         return file.read()
 
+@app.route('/ask', methods=['POST'])
 def answer_question():
     # Pobieranie danych z ciała żądania JSON
     data = request.get_json()
