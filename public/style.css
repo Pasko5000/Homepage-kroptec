@@ -21,7 +21,6 @@ body {
   word-break: break-word;
   overflow-wrap: break-word;
   text-shadow: var(--text-shadow);
-
 }
 
 /* Styl dla contentu */
@@ -54,6 +53,7 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 150px; /* Minimalna wysokość konsoli */
   overflow-y: auto; /* Pozwala na przewijanie jeśli zawartość przekroczy wysokość */
   border: 1px solid var(--main-font-color); /* Lekka obramówka do podkreślenia konsoli */
+  text-align: left;
 }
 
 .chatMessage {
