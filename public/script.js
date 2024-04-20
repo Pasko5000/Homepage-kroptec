@@ -87,15 +87,16 @@ document.addEventListener("DOMContentLoaded", function() {
         body: JSON.stringify({ prompt: question })
     })
     .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP status ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        const reply = data['answer'] ? data['answer'] : "Nie mogę odpowiedzieć na to pytanie.";
-        postMessage(reply, "System");
-    })
+      if (!response.ok) {
+          throw new Error(`HTTP status ${response.status}`);
+      }
+      return response.json();
+  })
+  .then(data => {
+      console.log(data);  // Dodaj tę linię, aby zobaczyć rzeczywistą strukturę danych.
+      const reply = data['answer'] ? data['answer'] : "Nie mogę odpowiedzieć na to pytanie.";
+      postMessage(reply, "System");
+  })
     .catch(error => {
         console.error('Error:', error);
         postMessage("Wystąpił błąd podczas próby uzyskania odpowiedzi.", "System");
