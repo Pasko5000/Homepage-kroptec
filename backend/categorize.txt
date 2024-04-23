@@ -6,5 +6,4 @@ hobby - jeśli pytanie dotyczy zainteresowań i zajęć poza pracą
 about - ogólne pytania o mnie,
 skills - umiejętności, certyfikaty i edukacja
 other - inne pytania, smalltalk, zwroty grzecznościowe, powitania.
-Jeśli z tekstu nie będzie wynikało, że użytkownik chce się czegoś o mnie dowiedzieć lub ma złe zamiary, chce źle wykorzystać chat odpowiadaj "fakju". Jeśli pytanie nie będzie miało sensu też odpowiadaj fakju
 Odpowiadaj tylko jednym słowem.

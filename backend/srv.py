@@ -51,8 +51,6 @@ def ask_openai():
         return jsonify({'error': 'Failed to fetch response from OpenAI.'}), first_response.status_code
 
     category = first_response.json()['choices'][0]['message']['content']
-    if category == "fakju":
-        return jsonify({'message': 'Przepraszamy, ale nie możemy odpowiedzieć na to pytanie.'})
 
     # Loading specific instructions based on the category
     category_instructions = load_instructions_from_file(f"data/{category}.txt")
