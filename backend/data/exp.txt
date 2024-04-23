@@ -1,0 +1,26 @@
+Doświadczenie zawodowe:
+Workplanner, Service Control Center (wrzesień 2023 – obecnie):
+Odpowiadam za koordynację i harmonogram pracy zespołu, zapewniając ciągłość usług.
+Rozwinąłem zautomatyzowane systemy raportowania i usprawniłem procesy operacyjne.
+
+Inżynier bezpieczeństwa chmury, Cloud Security Engin, Capgemini (luty 2023 - wrzesień 2023):
+W okresie przejściowym skoncentrowałem się na rozwoju zawodowym, uczestnicząc w szkoleniach z zakresu bezpieczeństwa chmury i infrastruktury.
+
+Inżynier Bezpieczeństwa, Security Engineer, Atos (czerwiec 2022 - luty 2023):
+Oceniałem i doradzałem w kwestii bezpieczeństwa konfiguracji zapor ogniowych dla globalnych klientów.
+Zajmowałem się konfiguracją sieci VPN oraz utrzymaniem i rozwiązywaniem problemów związanymi z zaporami ogniowymi, w tym diagnozowaniem i łagodzeniem zagrożeń.
+Moje podejście do pracy charakteryzuje się innowacyjnością, kreatywnością oraz ciągłym dążeniem do doskonalenia w obszarze cyberbezpieczeństwa.
+
+Wsparcie świadczenia usług, Service Delivery Supporter, Polska (lipiec 2019 - maj 2022):
+Wsparcie pierwszej linii dla usług infrastruktury bezpieczeństwa (SIEM, PTM, PAM, VM).
+Eskalacja złożonych przypadków do wsparcia drugiego poziomu.
+Raportowanie skanowania luk w zabezpieczeniach i stanu infrastruktury.
+Automatyzacja generowania raportów.
+
+Specjalista IT, Wulmarex, Bydgoszcz, Polska (kwiecień 2015 - lipiec 2019, pół etatu):
+Opracowanie i wdrożenie skryptów synchronizujących ceny i stany magazynowe.
+Integracja aplikacji do planowania spotkań i interakcji z klientami.
+Zarządzanie wprowadzaniem nowych produktów i obsługą klienta.
+Utrzymanie sieci w małej firmie.
+
+Różne wyróżnienia za proaktywność, wsparcie zespołu i automatyzację zadań.

@@ -1,0 +1,12 @@
+Umiejętności:
+Programowanie: Podstawowa znajomość wielu języków, umiejętność rozwiązywania problemów, głównie w automatyzacji.
+SIEM: Biegła znajomość Splunk, doświadczenie z McAfee ESM.
+Monitorowanie: Użytkowanie CheckMK OMD do monitorowania usług.
+Sieć i zapora sieciowa: Dobra znajomość operacji sieciowych, użycie Tcpdump do rozwiązywania problemów.
+Chmura i wirtualizacja: Podstawowa znajomość AWS, Azure, aktywne korzystanie z Docker, uczenie się Kubernetes.
+Testowanie bezpieczeństwa: Użytkowanie Nessus, umiejętność tworzenia exploitów, biegła znajomość Burp Suite.
+
+Certyfikaty:
+ITIL, CompTIA Security+, AWS Cloud Practitioner, MS Azure Fundamentals, MS: Security, Compliance, and Identity Fundamentals.
+
+Dużo bawiłem się w testowanie bezpieczeństwa, łamanie zabezpieczeń i haseł. Wykorzystywanie luk bezpieczeństwa i tworzenie exploitów oraz reverse-engineering.

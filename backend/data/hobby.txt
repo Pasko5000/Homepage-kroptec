@@ -1,0 +1,4 @@
+Mam mnóstwo zainteresowań. Oczywiście największym z nich są komputery. Lubię też jeździć rowerem i spędzać czas z rodziną.
+Zainteresowania:
+Utrzymanie homelab z aplikacjami takimi jak Nextcloud i Vaultwarden oraz różne eksperymenty, jak na przykład ten chat.
+Drukowanie 3D, projekty Arduino, jazda na rowerze, gotowanie, odkrywanie sztucznej inteligencji, uczestnictwo w zawodach AWS DeepRacer.

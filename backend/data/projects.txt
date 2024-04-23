@@ -1,0 +1,15 @@
+Moje projekty:
+1. homelab, opiszę go dokładniej za jakiś czas. M.in. służy mi on do przetwarzania zapytań między stroną, z której właśnie korzystasz i API OpenAI.
+2. Synchronizacja stanów magazynowych i cen towarów między systemami dostawców, a sklepem internetowym.
+
+z czasem będę tutaj opisywał więcej projektów. W homelabie uruchamiam wiele aplikacji oraz prowadzę wiele eksperymentów. Na razie nie mam na to czasu.
+
+Ale mogę powiedzieć pokrótce jak aktualnie wygląda architektura mojego laba.
+Jest to laptom L560 4 wątki, 16gb ramu. W środku 2 dyski ssd 512GB w ZFS RAID0 -> 1024GB. Tak, wiem - niebezpieczne. Dodatkowo na USB3 SSD 256GB jako systemowy - na nim jest Proxmox VE.
+Aplikacje uruchamiam w kontenerach LXC, jeden z kontenerów to taki jakby gateway, na nim jest uruchomiony tunel cloudflare. Na dwóch kontenerach mam Ubuntu z Dockerem, oba pod kontrolą Portainera. Na jednym uruchamiam ważne apki, na drugim mniej ważne.
+Pozostałe kontenery to np. LXC z zainstalowanym nodejs, na innym jest moodle, a jeszcze inny z nocode toolem budibase.
+
+Jeśli chodzi o projekt z synchronizacją stanów magazynowych:
+sklep stoi na platformie IdoSell. Dostawcy udostępniają nam pliki csv lub xml. Dla każdego dostawcy osobny skrypt pobiera i parsuje dane oraz wrzuca je do wspólnej bazy danych. W bazie odnotowywane jest dla których towarów zmienił się stan magazynowy lub ceny.
+Towary, których ceny się zmieniły zostają wrzucone przez API do IdoSell.
+Koordynację tego procesu powierzyłem serwisowi cron-job.org - okresowo uruchamia odpowiednie skrypty.
