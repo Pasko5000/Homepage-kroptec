@@ -3,6 +3,7 @@ from flask_cors import CORS
 import requests
 from os import getenv
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 
@@ -11,6 +12,8 @@ app.secret_key = getenv("FLASK_SECRET_KEY")
 CORS(app)
 
 OPENAI_API_KEY = getenv("OPENAI_API_KEY")
+SPLUNK_HEC_URL = getenv("SPLUNK_HEC_URL")
+SPLUNK_HEC_TOKEN = getenv("SPLUNK_HEC_TOKEN")
 
 def load_instructions_from_file(file_path):
     with open(file_path, "r", encoding="utf-8") as file:
@@ -27,6 +30,21 @@ def call_openai(model, messages):
             "model": model,
             "messages": messages
         }
+    )
+    return response
+
+def log_to_splunk(event):
+    headers = {
+        'Authorization': f'Splunk {SPLUNK_HEC_TOKEN}'
+    }
+    data = {
+        "event": event,
+        "sourcetype": "_json"
+    }
+    response = requests.post(
+        SPLUNK_HEC_URL,
+        headers=headers,
+        data=json.dumps(data)
     )
     return response
 
@@ -52,6 +70,13 @@ def ask_openai():
 
     category = first_response.json()['choices'][0]['message']['content']
 
+    # Log the first response to Splunk
+    log_to_splunk({
+        "prompt": user_prompt,
+        "response": category,
+        "step": "categorization"
+    })
+
     # Loading specific instructions based on the category
     category_instructions = load_instructions_from_file(f"data/{category}.txt")
 
@@ -65,6 +90,12 @@ def ask_openai():
     if second_response.status_code == 200:
         session['history'] = [*session_history, {"role": "user", "content": user_prompt}]
         content = second_response.json()
+        # Log the second response to Splunk
+        log_to_splunk({
+            "prompt": user_prompt,
+            "response": content,
+            "step": "detailed_response"
+        })
         return jsonify(content)
     else:
         return jsonify({'error': 'Failed to fetch detailed response from OpenAI.'}), second_response.status_code
