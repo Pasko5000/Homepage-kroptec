@@ -62,77 +62,47 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  const chatForm = document.getElementById('askForm');
-  const chatInput = document.getElementById('askAnything');
-  const chatConsole = document.getElementById('chatConsole');
-
-  // Funkcja do dodawania wiadomości do konsoli czatu
-  function postMessage(message, sender = "Użytkownik") {
-    const messageElement = document.createElement('p');
-    messageElement.classList.add('chatMessage');
-    messageElement.textContent = `[${sender}]: ${message}`;
-    chatConsole.appendChild(messageElement);
-
-    // Przewijanie konsoli do najnowszej wiadomości
-    chatConsole.scrollTop = chatConsole.scrollHeight;
-  }
-
-  function askQuestion(question) {
-    const url = 'https://llm.kroptec.pl/ask';
-    const headers = {
-      'Content-Type': 'application/json',
-      'sec-ch-ua': '"Microsoft Edge";v="123", "Not:A-Brand";v="8", "Chromium";v="123"',
-      'sec-ch-ua-platform': "Linux",
-      'Referer': 'https://kroptec.pl/',
-      'sec-ch-ua-mobile': '?0',
-      'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.0.0'
-    };
-
-    const body = JSON.stringify({ prompt: question });
-
-    fetch(url, {
-      method: 'POST',
-      headers: headers,
-      body: body
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP status ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        const reply = data.choices[0].message.content;
-        postMessage(reply, "System");
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        postMessage("Wystąpił błąd podczas próby uzyskania odpowiedzi.", "System");
-      });
-  }
-
-
-  // Obsługa wysyłania formularza
-  chatForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    const userMessage = chatInput.value.trim();
-    if (userMessage !== '') {
-      postMessage(userMessage);
-      askQuestion(userMessage);
-      chatInput.value = ''; // Czyszczenie pola tekstowego
-    }
-  });
-
-  // Opcjonalnie: Obsługa wciśnięcia Enter, jeśli wolisz bezpośrednie podejście bez submit formularza
-  chatInput.addEventListener('keypress', function (event) {
-    if (event.key === 'Enter' && !event.shiftKey) {
+  const chatConsole = document.getElementById("chatConsole");
+  const askForm = document.getElementById("askForm");
+  const askInput = document.getElementById("askAnything");
+  const sendButton = document.getElementById("sendButton");
+  
+  askForm.addEventListener("submit", async function (event) {
       event.preventDefault();
-      const userMessage = chatInput.value.trim();
-      if (userMessage !== '') {
-        postMessage(userMessage);
-        askQuestion(userMessage);
-        chatInput.value = ''; // Czyszczenie pola tekstowego
+      const userMessage = askInput.value.trim();
+      if (!userMessage) return;
+      
+      displayMessage("Ty", userMessage);
+      askInput.value = "";
+      sendButton.disabled = true;
+      
+      try {
+          const response = await fetch("https://n8n.kroptec.pl/webhook/7b17da6a-fb3c-4ae9-846f-8b8fa5d4796c", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ question: userMessage })
+          });
+          
+          if (!response.ok) {
+              throw new Error("Błąd podczas pobierania odpowiedzi");
+          }
+          
+          const data = await response.json();
+          displayMessage("Chat", data.pageContent || "Nie udało się pobrać odpowiedzi.");
+      } catch (error) {
+          displayMessage("System", "Wystąpił błąd podczas komunikacji z serwerem.");
+      } finally {
+          sendButton.disabled = false;
       }
-    }
   });
+  
+  function displayMessage(sender, message) {
+      const messageElement = document.createElement("p");
+      messageElement.classList.add("chatMessage");
+      messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+      chatConsole.appendChild(messageElement);
+      chatConsole.scrollTop = chatConsole.scrollHeight;
+  }
 });
