@@ -90,6 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
           
           const data = await response.json();
+          console.log(data);
           displayMessage("Chat", data.output || "Nie udało się pobrać odpowiedzi.");
       } catch (error) {
           displayMessage("System", "Wystąpił błąd podczas komunikacji z serwerem.");
